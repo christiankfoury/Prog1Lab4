@@ -1,42 +1,49 @@
-// Importing all java classes
 import java.util.*;
-// This program validates if a email is true or not
+
+// This program prompts the user for the user and then outputs if the email inputed by the user is valid or not
 public class VerifiedEmail{
     public static void main(String[] args) {
-        // Using the scanner class and calling it kb (keyboard)
+        // Creating two booleans, one for saying if the address sign has been found 
+        // and another for saying if a dot has been found and giving false as a initial value
+        boolean foundDot = false;
+        boolean foundAddressSign = false;
+
+        // Using the scanner class to recieve input from the user
         Scanner kb = new Scanner(System.in);
-        // Initializing an int i for itteration
-        int i = 0;
 
-        // Output the question to the user
-        System.out.println("To validate your email adress, please enter it:");
-        // Getting input from the user
-        String email = kb.nextLine();
+        // Prompt the user for an email address
+        System.out.println("Enter an email address");
+        // Recieving input from the user
+        String email = kb.next();
 
-        // Using the length method to find the length of the email inputed
-        int length = email.length();
-        // Finding the index of the at sign
-        int addressSign = email.indexOf('@');
-
-        // By using a for loop, we are looking for the position of the address sign
-        for (i = 0; i < addressSign; i++){} 
-        
-        // Creating a string called addressToEnd that is the value of the email inputed by the user
-        //from the point where is the addres sign to the end of the length (the end of the string)
-        String addressToEnd = email.substring(i, length);
-
-        // If from the point where the address sign to the end is equal to @vaniercollege.qc.ca OR vanier.college, it is a valid email
-        if (addressToEnd.equals("@vaniercollege.qc.ca") || addressToEnd.equals("@vanier.college")) 
-        {
-            // Output to the user that the email inputed is a valid email
+        // Creating a for loop to go over each character by using the integer i for itteration
+        for (int i = 0; i < email.length(); i++){
+            // If the value of foundAddressSign is still false and (nested if)...
+            if (!foundAddressSign) {
+                // if the current letter of the itteration is equal to an address sign, the foundAddressSign is now true
+                if (email.charAt(i) == '@') {
+                    foundAddressSign = true;
+                }
+            }
+            // Or If the value of foundDot is still false and (nested if)..
+            else if (!foundDot) {
+                if (email.charAt(i) == '.') {
+                    // if the current letter of the itteration is equal to a dot, the founddot is now true
+                    foundDot = true;
+                }
+            }
+        }
+        // If by looping to each character the email inputed by the user and the program finds a dot and an address sign then the email is valid
+        if (foundAddressSign && foundDot){
+            // Output
             System.out.println(email + " is a valid email");
         }
-        
-        // Else, it is not valid email
-        else
-        {
-            // Output to the user that the email inputed is not valid email
-            System.out.println(email + " is not a valid email");
+        // Else, one or both conditions to be a valid email are not met, then the email is invalid
+        else{
+            // Output
+            System.out.println(email + " is an invalid email");
         }
+
+        
     }
 }
