@@ -3,7 +3,7 @@
  * This program asks the user how many times does he/she want hello world to be printed and outputs the desired amount of times the user wants
 */
 import java.util.*;
-public class HelloWorld{
+public class Question49{
     public static void main(String[] args) {
         // Using an integer called times that will be used later to loop the desire amount of times inputed by the user
         int times = 0;
